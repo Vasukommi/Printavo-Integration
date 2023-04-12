@@ -59,7 +59,8 @@ module.exports = {
                 root: 'root@http://localhost:3000/remoteEntry.js'
             },
             exposes: {
-                './AuthorizePrintavo': "./src/components/authorize/authorize.jsx"
+                './AuthorizePrintavo': "./src/components/authorize/authorize.jsx",
+                './OrdersPrintavo': "./src/components/orders/Orders.jsx"
             },
             shared: {
                 react: {
