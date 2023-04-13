@@ -1,16 +1,25 @@
 import React, { useState } from 'react';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import axios from 'axios';
 
 import './authorize.css';
 
-const Authorize = () => {
+const Authorize = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [isLoggedIn, setLoginStatus] = useState(true);
+  const [isLoggedIn, setLoginStatus] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    const accountData = {
+      email: username,
+      password: password
+    }
+    const addAccount = await axios.post('http://localhost:4000/session/createAccount', accountData);
+    const addAccountResult = await addAccount.data
+    setLoginStatus(addAccountResult.isError)
+    onLogin(addAccountResult.isError)
   };
 
   return (

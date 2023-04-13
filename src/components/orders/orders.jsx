@@ -11,15 +11,19 @@ const printavoOrderFields = [
 ];
 
 const ourFields = [
-    { name: 'Order ID', code: 'NY' },
-    { name: 'Order Name', code: 'RM' },
-    { name: 'Order Date', code: 'LDN' },
-    { name: 'Customer Name', code: 'IST' },
-    { name: 'Customer Email', code: 'PRS' }
+    { label: 'Order ID', value: 'NY' },
+    { label: 'Order Name', value: 'RM' },
+    { label: 'Order Date', value: 'LDN' },
+    { label: 'Customer Name', value: 'IST' },
+    { label: 'Customer Email', value: 'PRS' }
 ];
 
 const Order = () => {
-    const [selectedCity, setSelectedCity] = useState(null);
+    const [selectedOption, setSelectedOption] = useState(ourFields[0]);
+
+    const handleChange = (option) => {
+        setSelectedOption(option);
+    };
     return (
         <div>
             <form action="">
@@ -31,8 +35,7 @@ const Order = () => {
                                     {eachField}
                                 </div>
                                 <div>
-                                    <Dropdown value={selectedCity} onChange={(e) => setSelectedCity(e.value)} options={ourFields} optionLabel="name"
-                                        placeholder="Select a Field" className="w-full md:w-14rem" />
+                                    <Dropdown options={ourFields} onChange={handleChange} value={selectedOption} placeholder="Select option" />
                                 </div>
                             </div>
                         )
