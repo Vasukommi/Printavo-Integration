@@ -16,7 +16,7 @@ const Authorize = ({ onLogin }) => {
       email: username,
       password: password
     }
-    const addAccount = await axios.post('http://localhost:4000/session/createAccount', accountData);
+    const addAccount = await axios.post('http://localhost:4001/session/createAccount', accountData);
     const addAccountResult = await addAccount.data
     setLoginStatus(addAccountResult.isError)
     onLogin(addAccountResult.isError)
